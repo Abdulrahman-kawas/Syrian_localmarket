@@ -59,7 +59,10 @@ def send_direct(token: str, platform: str, title: str, body: str, data: dict[str
 
     if platform == "apns":
         fmt = "apple"
-        payload: dict[str, Any] = {"aps": {"alert": {"title": title, "body": body}}, "data": data}
+        payload: dict[str, Any] = {
+            "aps": {"alert": {"title": title, "body": body}},
+            "data": data,
+        }
     else:  # fcm / gcm
         fmt = "gcm"
         payload = {"notification": {"title": title, "body": body}, "data": data}

@@ -230,7 +230,12 @@ def test_review_updates_reputation(client, db) -> None:
     r = client.post(
         "/api/v1/reviews",
         headers=_auth(author),
-        json={"target_id": target_id, "target_type": "seller", "rating": 4, "text": "Good"},
+        json={
+            "target_id": target_id,
+            "target_type": "seller",
+            "rating": 4,
+            "text": "Good",
+        },
     )
     assert r.status_code == 201, r.text
 

@@ -75,18 +75,33 @@ def test_auto_delist_expires_and_sells_out(db) -> None:
 
     seller = _seller(db)
     expired = Product(
-        seller_id=seller.id, type=ProductType.near_expiry, title="old",
-        original_price=10, discounted_price=5, quantity=3,
-        expiry_class=ExpiryClass.use_by, expiry_date=date.today() - timedelta(days=2),
+        seller_id=seller.id,
+        type=ProductType.near_expiry,
+        title="old",
+        original_price=10,
+        discounted_price=5,
+        quantity=3,
+        expiry_class=ExpiryClass.use_by,
+        expiry_date=date.today() - timedelta(days=2),
         status=ProductStatus.active,
     )
     zero = Product(
-        seller_id=seller.id, type=ProductType.regular, title="empty",
-        original_price=10, discounted_price=5, quantity=0, status=ProductStatus.active,
+        seller_id=seller.id,
+        type=ProductType.regular,
+        title="empty",
+        original_price=10,
+        discounted_price=5,
+        quantity=0,
+        status=ProductStatus.active,
     )
     healthy = Product(
-        seller_id=seller.id, type=ProductType.regular, title="ok",
-        original_price=10, discounted_price=5, quantity=9, status=ProductStatus.active,
+        seller_id=seller.id,
+        type=ProductType.regular,
+        title="ok",
+        original_price=10,
+        discounted_price=5,
+        quantity=9,
+        status=ProductStatus.active,
     )
     db.add_all([expired, zero, healthy])
     db.commit()
@@ -107,8 +122,13 @@ def test_proximity_deals_near(db) -> None:
     seller = _seller(db)
     db.add(
         Product(
-            seller_id=seller.id, type=ProductType.near_expiry, title="deal",
-            original_price=10, discounted_price=5, quantity=1, status=ProductStatus.active,
+            seller_id=seller.id,
+            type=ProductType.near_expiry,
+            title="deal",
+            original_price=10,
+            discounted_price=5,
+            quantity=1,
+            status=ProductStatus.active,
         )
     )
     db.commit()
@@ -124,8 +144,13 @@ def test_proximity_targets_only_nearby_consumers(db) -> None:
     seller = _seller(db)  # located at 33.5, 36.3
     db.add(
         Product(
-            seller_id=seller.id, type=ProductType.near_expiry, title="fresh deal",
-            original_price=10, discounted_price=5, quantity=2, status=ProductStatus.active,
+            seller_id=seller.id,
+            type=ProductType.near_expiry,
+            title="fresh deal",
+            original_price=10,
+            discounted_price=5,
+            quantity=2,
+            status=ProductStatus.active,
         )
     )
     # One consumer next door, one in another city.

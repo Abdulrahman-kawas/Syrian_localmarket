@@ -20,7 +20,10 @@ depends_on = None
 
 
 def upgrade() -> None:
-    op.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS last_location geometry(Point, 4326)")
+    op.execute(
+        "ALTER TABLE users ADD COLUMN IF NOT EXISTS last_location"
+        " geometry(Point, 4326)"
+    )
     op.execute(
         "CREATE INDEX IF NOT EXISTS idx_users_last_location "
         "ON users USING gist (last_location)"
