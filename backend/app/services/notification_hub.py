@@ -41,9 +41,7 @@ def _sas_token(uri: str, key_name: str, key: str, ttl_seconds: int = 3600) -> st
     encoded_uri = urllib.parse.quote_plus(uri.lower())
     expiry = int(time.time()) + ttl_seconds
     to_sign = f"{encoded_uri}\n{expiry}".encode()
-    signature = base64.b64encode(
-        hmac.new(key.encode("utf-8"), to_sign, hashlib.sha256).digest()
-    )
+    signature = base64.b64encode(hmac.new(key.encode("utf-8"), to_sign, hashlib.sha256).digest())
     sig = urllib.parse.quote_plus(signature)
     return f"SharedAccessSignature sr={encoded_uri}&sig={sig}&se={expiry}&skn={key_name}"
 

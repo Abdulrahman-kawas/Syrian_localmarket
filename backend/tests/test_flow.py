@@ -270,9 +270,7 @@ def test_list_conversations(client, db) -> None:
     b_token, b_id = _signup_and_verify(client, db, "seller")
 
     # A opens a conversation with B and sends a message.
-    r = client.post(
-        "/api/v1/conversations", headers=_auth(a_token), json={"participant_id": b_id}
-    )
+    r = client.post("/api/v1/conversations", headers=_auth(a_token), json={"participant_id": b_id})
     assert r.status_code == 200, r.text
     convo_id = r.json()["id"]
 

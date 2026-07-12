@@ -62,7 +62,9 @@ def _seller(db) -> Seller:
     db.add(user)
     db.flush()
     seller = Seller(
-        user_id=user.id, type=SellerType.shop, shop_name="Jobs Shop",
+        user_id=user.id,
+        type=SellerType.shop,
+        shop_name="Jobs Shop",
         geo_point=make_point(33.5, 36.3),
     )
     db.add(seller)

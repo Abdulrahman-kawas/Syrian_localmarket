@@ -45,9 +45,7 @@ def send_whatsapp(to: str, body: str) -> bool:
         from azure.communication.messages import NotificationMessagesClient
         from azure.communication.messages.models import TextNotificationContent
 
-        client = NotificationMessagesClient.from_connection_string(
-            settings.acs_connection_string
-        )
+        client = NotificationMessagesClient.from_connection_string(settings.acs_connection_string)
         client.send(
             TextNotificationContent(
                 channel_registration_id=settings.acs_whatsapp_channel_id,
@@ -62,9 +60,7 @@ def send_whatsapp(to: str, body: str) -> bool:
         return False
 
 
-def send_verification_code(
-    *, method: str, email: str | None, phone: str | None, code: str
-) -> None:
+def send_verification_code(*, method: str, email: str | None, phone: str | None, code: str) -> None:
     """Deliver a verification code via the user's chosen channel."""
     subject = "Your LocalMarket verification code"
     body = f"Your LocalMarket verification code is: {code}"
