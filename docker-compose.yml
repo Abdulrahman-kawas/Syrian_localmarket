@@ -1,0 +1,67 @@
+# Local development stack — runs the whole marketplace on your laptop.
+#
+#   docker compose up --build
+#
+# Services:
+#   db     : PostgreSQL 16 + PostGIS 3.4
+#   api    : FastAPI backend (waits for db, migrates, seeds, serves :8000)
+#   admin  : Back-office React app (Vite) served on :5173
+#
+# API docs:   http://localhost:8000/docs
+# Admin app:  http://localhost:5173
+
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_USER: localmarket
+      POSTGRES_PASSWORD: localmarket
+      POSTGRES_DB: localmarket
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U localmarket"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: ./backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql+psycopg2://localmarket:localmarket@db:5432/localmarket
+      APP_ENV: development
+      APP_DEBUG: "true"
+      JWT_SECRET_KEY: dev-jwt-secret-change-me
+      APP_SECRET_KEY: dev-app-secret-change-me
+      CORS_ORIGINS: '["http://localhost:5173","http://localhost:19006","http://localhost:3000"]'
+      # Optional: create a first admin on boot (leave blank to skip).
+      SEED_ADMIN_EMAIL: admin@localmarket.dev
+      SEED_ADMIN_PHONE: "+963900000000"
+      SEED_ADMIN_PASSWORD: admin12345
+      # Provide a real key to enable live Google directions (optional).
+      GOOGLE_MAPS_API_KEY: ""
+    ports:
+      - "8000:8000"
+    volumes:
+      - media:/app/media_store
+
+  admin:
+    build:
+      context: ./admin-web
+    depends_on:
+      - api
+    environment:
+      # Vite reads this at build/runtime to reach the API.
+      VITE_API_URL: http://localhost:8000/api/v1
+    ports:
+      - "5173:80"
+
+volumes:
+  pgdata:
+  media:

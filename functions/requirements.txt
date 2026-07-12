@@ -1,0 +1,8 @@
+# Azure Functions runtime + the backend ORM (deployed alongside as the `app` package).
+azure-functions>=1.18.0
+SQLAlchemy>=2.0.25
+psycopg2-binary>=2.9.9
+GeoAlchemy2>=0.14.0
+shapely>=2.0.0
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
