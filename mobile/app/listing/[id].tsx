@@ -4,7 +4,6 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { ListingDetail } from '../../src/features/consumer';
 import { getProduct, createConversation, type DetailProduct } from '../../src/api/endpoints';
 import { theme } from '../../src/theme';
-import i18n from '../../src/i18n';
 
 export default function ListingDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -60,10 +59,10 @@ export default function ListingDetailScreen() {
 
 const styles = StyleSheet.create({
   center: {
-    flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: theme.colors.light.bg,
+    flex: 1,
+    justifyContent: 'center',
   },
   error: { color: theme.colors.urgent, padding: 24, textAlign: 'center' },
 });

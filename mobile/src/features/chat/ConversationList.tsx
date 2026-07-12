@@ -54,46 +54,46 @@ const ConversationList: React.FC<ConversationListProps> = ({
 };
 
 const styles = StyleSheet.create({
-  list: {
-    padding: theme.spacing.screenPadding,
+  avatar: {
+    alignItems: 'center',
+    backgroundColor: theme.colors.pine,
+    borderRadius: 25,
+    height: 50,
+    justifyContent: 'center',
+    marginRight: theme.spacing.md,
+    width: 50,
+  },
+  avatarText: {
+    color: theme.colors.light.onPrimary,
+    fontSize: theme.typography.sizes.cardTitle,
+    fontWeight: theme.typography.weights.extraBold,
   },
   card: {
     marginBottom: theme.spacing.md,
   },
   header: {
+    alignItems: 'center',
     flexDirection: 'row',
-    alignItems: 'center',
-  },
-  avatar: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    backgroundColor: theme.colors.pine,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: theme.spacing.md,
-  },
-  avatarText: {
-    fontSize: theme.typography.sizes.cardTitle,
-    fontWeight: theme.typography.weights.extraBold,
-    color: theme.colors.light.onPrimary,
   },
   info: {
     flex: 1,
   },
-  name: {
-    fontSize: theme.typography.sizes.body,
-    fontWeight: theme.typography.weights.bold,
-    color: theme.colors.light.text,
-    marginBottom: theme.spacing.xs,
+  list: {
+    padding: theme.spacing.screenPadding,
   },
   message: {
-    fontSize: theme.typography.sizes.caption,
     color: theme.colors.light.textSoft,
+    fontSize: theme.typography.sizes.caption,
+  },
+  name: {
+    color: theme.colors.light.text,
+    fontSize: theme.typography.sizes.body,
+    fontWeight: theme.typography.weights.bold,
+    marginBottom: theme.spacing.xs,
   },
   time: {
-    fontSize: theme.typography.sizes.micro,
     color: theme.colors.light.textSoft,
+    fontSize: theme.typography.sizes.micro,
   },
 });
 

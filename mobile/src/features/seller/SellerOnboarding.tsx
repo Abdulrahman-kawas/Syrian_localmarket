@@ -75,20 +75,20 @@ const SellerOnboarding: React.FC<SellerOnboardingProps> = ({ onComplete }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: theme.colors.light.bg,
+    flex: 1,
     padding: theme.spacing.screenPadding,
   },
+  subtitle: {
+    color: theme.colors.light.textSoft,
+    fontSize: theme.typography.sizes.body,
+    marginBottom: theme.spacing.xl,
+  },
   title: {
+    color: theme.colors.light.text,
     fontSize: theme.typography.sizes.screenHeadline,
     fontWeight: theme.typography.weights.extraBold,
-    color: theme.colors.light.text,
     marginBottom: theme.spacing.sm,
-  },
-  subtitle: {
-    fontSize: theme.typography.sizes.body,
-    color: theme.colors.light.textSoft,
-    marginBottom: theme.spacing.xl,
   },
   typeSelector: {
     flexDirection: 'row',

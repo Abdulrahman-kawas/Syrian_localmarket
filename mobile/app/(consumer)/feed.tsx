@@ -5,7 +5,6 @@ import { ListingFeed } from '../../src/features/consumer';
 import { listProducts, updateLocation, type FeedProduct } from '../../src/api/endpoints';
 import { useLocation } from '../../src/hooks/useLocation';
 import { theme } from '../../src/theme';
-import i18n from '../../src/i18n';
 
 export default function FeedScreen() {
   const router = useRouter();
@@ -72,12 +71,12 @@ export default function FeedScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: theme.colors.light.bg },
   center: {
-    flexGrow: 1,
     alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: theme.colors.light.bg,
+    flexGrow: 1,
+    justifyContent: 'center',
   },
+  container: { backgroundColor: theme.colors.light.bg, flex: 1 },
   error: { color: theme.colors.urgent, padding: 24, textAlign: 'center' },
 });

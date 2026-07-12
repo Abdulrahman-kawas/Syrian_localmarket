@@ -35,6 +35,11 @@ export const theme = {
       accent: '#D8B876',
     },
 
+    // Neutrals / overlays (used by full-bleed surfaces like the QR scanner)
+    black: '#000000',
+    white: '#FFFFFF',
+    overlay: 'rgba(0,0,0,0.8)',
+
     // Status
     urgent: '#E8763A',
     mapBg: '#E7E2D3',

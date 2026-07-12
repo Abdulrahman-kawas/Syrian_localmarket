@@ -54,7 +54,7 @@ export default function MapScreen() {
     <View style={styles.container}>
       <ConsumerMap
         sellers={sellers}
-        onSellerPress={(s) => router.push(`/(consumer)/feed`)}
+        onSellerPress={() => router.push(`/(consumer)/feed`)}
         onMapPress={() => {}}
       />
     </View>
@@ -62,13 +62,13 @@ export default function MapScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
   center: {
-    flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
     backgroundColor: theme.colors.light.bg,
+    flex: 1,
+    gap: 8,
+    justifyContent: 'center',
   },
+  container: { flex: 1 },
   muted: { color: theme.colors.light.textSoft },
 });

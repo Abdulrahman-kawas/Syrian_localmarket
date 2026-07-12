@@ -25,29 +25,29 @@ const styles = StyleSheet.create({
   container: {
     marginBottom: theme.spacing.lg,
   },
-  label: {
-    fontSize: theme.typography.sizes.caption,
-    fontWeight: theme.typography.weights.medium,
-    color: theme.colors.light.text,
-    marginBottom: theme.spacing.xs,
+  error: {
+    color: theme.colors.coral,
+    fontSize: theme.typography.sizes.micro,
+    marginTop: theme.spacing.xs,
   },
   input: {
-    height: 50,
     backgroundColor: theme.colors.light.bgSunk,
-    borderRadius: theme.borderRadius.button,
-    paddingHorizontal: theme.spacing.lg,
-    fontSize: theme.typography.sizes.body,
-    color: theme.colors.light.text,
-    borderWidth: 1,
     borderColor: theme.colors.light.line,
+    borderRadius: theme.borderRadius.button,
+    borderWidth: 1,
+    color: theme.colors.light.text,
+    fontSize: theme.typography.sizes.body,
+    height: 50,
+    paddingHorizontal: theme.spacing.lg,
   },
   inputError: {
     borderColor: theme.colors.coral,
   },
-  error: {
-    fontSize: theme.typography.sizes.micro,
-    color: theme.colors.coral,
-    marginTop: theme.spacing.xs,
+  label: {
+    color: theme.colors.light.text,
+    fontSize: theme.typography.sizes.caption,
+    fontWeight: theme.typography.weights.medium,
+    marginBottom: theme.spacing.xs,
   },
 });
 

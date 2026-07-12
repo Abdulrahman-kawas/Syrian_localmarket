@@ -86,76 +86,76 @@ const ChatThread: React.FC<ChatThreadProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: theme.colors.light.bg,
+    flex: 1,
   },
-  messageList: {
+  input: {
+    backgroundColor: theme.colors.light.bgSunk,
+    borderRadius: theme.borderRadius.button,
+    color: theme.colors.light.text,
+    flex: 1,
+    fontSize: theme.typography.sizes.body,
+    height: 50,
+    marginRight: theme.spacing.md,
+    paddingHorizontal: theme.spacing.lg,
+  },
+  inputContainer: {
+    borderTopColor: theme.colors.light.line,
+    borderTopWidth: 1,
+    flexDirection: 'row',
     padding: theme.spacing.screenPadding,
+  },
+  messageBubble: {
+    borderRadius: theme.borderRadius.button,
+    paddingHorizontal: theme.spacing.lg,
+    paddingVertical: theme.spacing.sm,
   },
   messageContainer: {
     marginBottom: theme.spacing.md,
     maxWidth: '80%',
   },
-  ownMessage: {
-    alignSelf: 'flex-end',
-  },
-  otherMessage: {
-    alignSelf: 'flex-start',
-  },
-  messageBubble: {
-    paddingHorizontal: theme.spacing.lg,
-    paddingVertical: theme.spacing.sm,
-    borderRadius: theme.borderRadius.button,
-  },
-  ownBubble: {
-    backgroundColor: theme.colors.pine,
-  },
-  otherBubble: {
-    backgroundColor: theme.colors.light.bgSunk,
+  messageList: {
+    padding: theme.spacing.screenPadding,
   },
   messageText: {
     fontSize: theme.typography.sizes.body,
   },
-  ownMessageText: {
-    color: theme.colors.light.onPrimary,
+  messageTime: {
+    color: theme.colors.light.textSoft,
+    fontSize: theme.typography.sizes.micro,
+    marginTop: theme.spacing.xs,
+    textAlign: 'right',
+  },
+  otherBubble: {
+    backgroundColor: theme.colors.light.bgSunk,
+  },
+  otherMessage: {
+    alignSelf: 'flex-start',
   },
   otherMessageText: {
     color: theme.colors.light.text,
   },
-  messageTime: {
-    fontSize: theme.typography.sizes.micro,
-    color: theme.colors.light.textSoft,
-    marginTop: theme.spacing.xs,
-    textAlign: 'right',
+  ownBubble: {
+    backgroundColor: theme.colors.pine,
   },
-  inputContainer: {
-    flexDirection: 'row',
-    padding: theme.spacing.screenPadding,
-    borderTopWidth: 1,
-    borderTopColor: theme.colors.light.line,
+  ownMessage: {
+    alignSelf: 'flex-end',
   },
-  input: {
-    flex: 1,
-    height: 50,
-    backgroundColor: theme.colors.light.bgSunk,
-    borderRadius: theme.borderRadius.button,
-    paddingHorizontal: theme.spacing.lg,
-    fontSize: theme.typography.sizes.body,
-    color: theme.colors.light.text,
-    marginRight: theme.spacing.md,
+  ownMessageText: {
+    color: theme.colors.light.onPrimary,
   },
   sendButton: {
-    height: 50,
-    paddingHorizontal: theme.spacing.xl,
+    alignItems: 'center',
     backgroundColor: theme.colors.pine,
     borderRadius: theme.borderRadius.button,
+    height: 50,
     justifyContent: 'center',
-    alignItems: 'center',
+    paddingHorizontal: theme.spacing.xl,
   },
   sendButtonText: {
+    color: theme.colors.light.onPrimary,
     fontSize: theme.typography.sizes.body,
     fontWeight: theme.typography.weights.bold,
-    color: theme.colors.light.onPrimary,
   },
 });
 

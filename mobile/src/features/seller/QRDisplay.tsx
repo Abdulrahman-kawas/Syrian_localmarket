@@ -13,7 +13,6 @@ interface QRDisplayProps {
 const QRDisplay: React.FC<QRDisplayProps> = ({
   productTitle,
   productPrice,
-  qrCodeUrl,
   onPrint,
 }) => {
   return (
@@ -45,61 +44,61 @@ const QRDisplay: React.FC<QRDisplayProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    alignItems: 'center',
     backgroundColor: theme.colors.light.bg,
+    flex: 1,
     padding: theme.spacing.screenPadding,
-    alignItems: 'center',
   },
-  title: {
-    fontSize: theme.typography.sizes.sectionTitle,
-    fontWeight: theme.typography.weights.extraBold,
-    color: theme.colors.light.text,
+  note: {
+    color: theme.colors.light.textSoft,
+    fontSize: theme.typography.sizes.caption,
     marginBottom: theme.spacing.xl,
-  },
-  qrContainer: {
-    marginBottom: theme.spacing.xl,
-  },
-  qrFrame: {
-    width: 196,
-    height: 196,
-    backgroundColor: '#FFFFFF',
-    borderRadius: theme.borderRadius.qrCard,
-    justifyContent: 'center',
-    alignItems: 'center',
-    ...theme.shadows.lightCard,
-  },
-  qrPlaceholder: {
-    width: 150,
-    height: 150,
-    backgroundColor: theme.colors.light.bgSunk,
-    borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  qrText: {
-    fontSize: theme.typography.sizes.sectionTitle,
-    fontWeight: theme.typography.weights.extraBold,
-    color: theme.colors.pine,
+    textAlign: 'center',
   },
   productInfo: {
     alignItems: 'center',
     marginBottom: theme.spacing.xl,
   },
-  productTitle: {
-    fontSize: theme.typography.sizes.cardTitle,
-    fontWeight: theme.typography.weights.bold,
-    color: theme.colors.light.text,
-    marginBottom: theme.spacing.xs,
-  },
   productPrice: {
+    color: theme.colors.brass,
     fontSize: theme.typography.sizes.priceHero,
     fontWeight: theme.typography.weights.extraBold,
-    color: theme.colors.brass,
   },
-  note: {
-    fontSize: theme.typography.sizes.caption,
-    color: theme.colors.light.textSoft,
-    textAlign: 'center',
+  productTitle: {
+    color: theme.colors.light.text,
+    fontSize: theme.typography.sizes.cardTitle,
+    fontWeight: theme.typography.weights.bold,
+    marginBottom: theme.spacing.xs,
+  },
+  qrContainer: {
+    marginBottom: theme.spacing.xl,
+  },
+  qrFrame: {
+    alignItems: 'center',
+    backgroundColor: theme.colors.white,
+    borderRadius: theme.borderRadius.qrCard,
+    height: 196,
+    justifyContent: 'center',
+    width: 196,
+    ...theme.shadows.lightCard,
+  },
+  qrPlaceholder: {
+    alignItems: 'center',
+    backgroundColor: theme.colors.light.bgSunk,
+    borderRadius: 8,
+    height: 150,
+    justifyContent: 'center',
+    width: 150,
+  },
+  qrText: {
+    color: theme.colors.pine,
+    fontSize: theme.typography.sizes.sectionTitle,
+    fontWeight: theme.typography.weights.extraBold,
+  },
+  title: {
+    color: theme.colors.light.text,
+    fontSize: theme.typography.sizes.sectionTitle,
+    fontWeight: theme.typography.weights.extraBold,
     marginBottom: theme.spacing.xl,
   },
 });
