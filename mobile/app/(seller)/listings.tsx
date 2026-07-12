@@ -57,9 +57,9 @@ export default function SellerListings() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: theme.colors.light.bg },
-  center: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 10 },
-  muted: { color: theme.colors.light.textSoft },
+  center: { alignItems: 'center', flex: 1, gap: 10, justifyContent: 'center' },
+  container: { backgroundColor: theme.colors.light.bg, flex: 1 },
   link: { color: theme.colors.light.primary, fontWeight: '600' },
-  signout: { padding: 16, alignItems: 'center' },
+  muted: { color: theme.colors.light.textSoft },
+  signout: { alignItems: 'center', padding: 16 },
 });

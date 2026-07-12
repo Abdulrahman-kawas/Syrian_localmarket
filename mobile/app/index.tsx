@@ -29,9 +29,9 @@ export default function Index() {
 
 const styles = StyleSheet.create({
   center: {
-    flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: theme.colors.light.bg,
+    flex: 1,
+    justifyContent: 'center',
   },
 });

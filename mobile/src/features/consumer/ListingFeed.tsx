@@ -64,65 +64,65 @@ const ListingFeed: React.FC<ListingFeedProps> = ({ products, onProductPress }) =
 };
 
 const styles = StyleSheet.create({
-  list: {
-    padding: theme.spacing.screenPadding,
-  },
   card: {
     marginBottom: theme.spacing.md,
   },
+  discountedPrice: {
+    color: theme.colors.brass,
+    fontSize: theme.typography.sizes.priceCard,
+    fontWeight: theme.typography.weights.extraBold,
+    marginRight: theme.spacing.sm,
+  },
+  expiry: {
+    color: theme.colors.light.textSoft,
+    fontSize: theme.typography.sizes.caption,
+    marginBottom: theme.spacing.xs,
+  },
   header: {
+    alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
     marginBottom: theme.spacing.sm,
   },
-  title: {
-    fontSize: theme.typography.sizes.cardTitle,
-    fontWeight: theme.typography.weights.bold,
-    color: theme.colors.light.text,
-    flex: 1,
+  list: {
+    padding: theme.spacing.screenPadding,
   },
   nearExpiryBadge: {
     backgroundColor: theme.colors.coral,
-    paddingHorizontal: theme.spacing.sm,
-    paddingVertical: theme.spacing.xs,
     borderRadius: theme.borderRadius.chip,
     marginLeft: theme.spacing.sm,
+    paddingHorizontal: theme.spacing.sm,
+    paddingVertical: theme.spacing.xs,
   },
   nearExpiryText: {
+    color: theme.colors.white,
     fontSize: theme.typography.sizes.micro,
     fontWeight: theme.typography.weights.extraBold,
-    color: '#FFFFFF',
-  },
-  seller: {
-    fontSize: theme.typography.sizes.caption,
-    color: theme.colors.light.textSoft,
-    marginBottom: theme.spacing.sm,
-  },
-  priceContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: theme.spacing.sm,
-  },
-  discountedPrice: {
-    fontSize: theme.typography.sizes.priceCard,
-    fontWeight: theme.typography.weights.extraBold,
-    color: theme.colors.brass,
-    marginRight: theme.spacing.sm,
   },
   originalPrice: {
-    fontSize: theme.typography.sizes.priceWas,
     color: theme.colors.light.textSoft,
+    fontSize: theme.typography.sizes.priceWas,
     textDecorationLine: 'line-through',
   },
-  expiry: {
-    fontSize: theme.typography.sizes.caption,
-    color: theme.colors.light.textSoft,
-    marginBottom: theme.spacing.xs,
+  priceContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginBottom: theme.spacing.sm,
   },
   quantity: {
-    fontSize: theme.typography.sizes.caption,
     color: theme.colors.light.textSoft,
+    fontSize: theme.typography.sizes.caption,
+  },
+  seller: {
+    color: theme.colors.light.textSoft,
+    fontSize: theme.typography.sizes.caption,
+    marginBottom: theme.spacing.sm,
+  },
+  title: {
+    color: theme.colors.light.text,
+    flex: 1,
+    fontSize: theme.typography.sizes.cardTitle,
+    fontWeight: theme.typography.weights.bold,
   },
 });
 

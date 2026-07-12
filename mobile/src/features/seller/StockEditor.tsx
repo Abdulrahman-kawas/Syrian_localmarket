@@ -55,44 +55,44 @@ const StockEditor: React.FC<StockEditorProps> = ({ currentQuantity, onUpdate }) 
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: theme.colors.light.bgElev,
-    borderRadius: theme.borderRadius.card,
-    padding: theme.spacing.lg,
-    borderWidth: 1,
-    borderColor: theme.colors.light.line,
-  },
-  title: {
-    fontSize: theme.typography.sizes.sectionTitle,
-    fontWeight: theme.typography.weights.extraBold,
-    color: theme.colors.light.text,
-    marginBottom: theme.spacing.lg,
-  },
-  currentStock: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: theme.spacing.xl,
-  },
-  label: {
-    fontSize: theme.typography.sizes.body,
-    color: theme.colors.light.textSoft,
-  },
-  quantity: {
-    fontSize: theme.typography.sizes.priceHero,
-    fontWeight: theme.typography.weights.extraBold,
-    color: theme.colors.brass,
-  },
   actions: {
     flexDirection: 'row',
     gap: theme.spacing.md,
   },
+  container: {
+    backgroundColor: theme.colors.light.bgElev,
+    borderColor: theme.colors.light.line,
+    borderRadius: theme.borderRadius.card,
+    borderWidth: 1,
+    padding: theme.spacing.lg,
+  },
+  currentStock: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: theme.spacing.xl,
+  },
+  label: {
+    color: theme.colors.light.textSoft,
+    fontSize: theme.typography.sizes.body,
+  },
+  quantity: {
+    color: theme.colors.brass,
+    fontSize: theme.typography.sizes.priceHero,
+    fontWeight: theme.typography.weights.extraBold,
+  },
   soldOut: {
+    color: theme.colors.coral,
     fontSize: theme.typography.sizes.cardTitle,
     fontWeight: theme.typography.weights.extraBold,
-    color: theme.colors.coral,
-    textAlign: 'center',
     marginTop: theme.spacing.lg,
+    textAlign: 'center',
+  },
+  title: {
+    color: theme.colors.light.text,
+    fontSize: theme.typography.sizes.sectionTitle,
+    fontWeight: theme.typography.weights.extraBold,
+    marginBottom: theme.spacing.lg,
   },
 });
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { Text, StyleSheet, ScrollView } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Button, Input } from '../../src/components';
 import { theme } from '../../src/theme';
@@ -43,13 +43,13 @@ export default function VerifyScreen() {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: theme.colors.light.bg,
     flexGrow: 1,
+    gap: 14,
     justifyContent: 'center',
     padding: 24,
-    gap: 14,
-    backgroundColor: theme.colors.light.bg,
   },
-  title: { fontSize: 26, fontWeight: '700', color: theme.colors.light.text },
-  muted: { color: theme.colors.light.textSoft },
   error: { color: theme.colors.urgent },
+  muted: { color: theme.colors.light.textSoft },
+  title: { color: theme.colors.light.text, fontSize: 26, fontWeight: '700' },
 });

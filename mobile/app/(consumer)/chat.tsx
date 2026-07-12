@@ -54,12 +54,12 @@ export default function ChatScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: theme.colors.light.bg },
   center: {
-    flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: theme.colors.light.bg,
+    flex: 1,
+    justifyContent: 'center',
   },
+  container: { backgroundColor: theme.colors.light.bg, flex: 1 },
   hint: { color: theme.colors.light.textSoft },
 });

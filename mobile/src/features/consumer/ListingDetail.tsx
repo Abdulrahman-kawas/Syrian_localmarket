@@ -30,7 +30,6 @@ interface ListingDetailProps {
 
 const ListingDetail: React.FC<ListingDetailProps> = ({
   product,
-  onCallSeller,
   onChatSeller,
   onScanQR,
 }) => {
@@ -99,119 +98,119 @@ const ListingDetail: React.FC<ListingDetailProps> = ({
 };
 
 const styles = StyleSheet.create({
+  actions: {
+    gap: theme.spacing.md,
+  },
   container: {
-    flex: 1,
     backgroundColor: theme.colors.light.bg,
-  },
-  imageContainer: {
-    height: 300,
-    backgroundColor: theme.colors.light.bgSunk,
-  },
-  imagePlaceholder: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  imagePlaceholderText: {
-    fontSize: theme.typography.sizes.body,
-    color: theme.colors.light.textSoft,
   },
   content: {
     padding: theme.spacing.screenPadding,
   },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: theme.spacing.md,
-  },
-  title: {
-    fontSize: theme.typography.sizes.screenHeadline,
-    fontWeight: theme.typography.weights.extraBold,
-    color: theme.colors.light.text,
-    flex: 1,
-  },
-  nearExpiryBadge: {
-    backgroundColor: theme.colors.coral,
-    paddingHorizontal: theme.spacing.sm,
-    paddingVertical: theme.spacing.xs,
-    borderRadius: theme.borderRadius.chip,
-    marginLeft: theme.spacing.sm,
-  },
-  nearExpiryText: {
-    fontSize: theme.typography.sizes.micro,
-    fontWeight: theme.typography.weights.extraBold,
-    color: '#FFFFFF',
-  },
   description: {
-    fontSize: theme.typography.sizes.body,
     color: theme.colors.light.textSoft,
-    marginBottom: theme.spacing.xl,
+    fontSize: theme.typography.sizes.body,
     lineHeight: 24,
-  },
-  priceContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
     marginBottom: theme.spacing.xl,
   },
   discountedPrice: {
+    color: theme.colors.brass,
     fontSize: theme.typography.sizes.priceHero,
     fontWeight: theme.typography.weights.extraBold,
-    color: theme.colors.brass,
     marginRight: theme.spacing.md,
-  },
-  originalPrice: {
-    fontSize: theme.typography.sizes.priceCard,
-    color: theme.colors.light.textSoft,
-    textDecorationLine: 'line-through',
   },
   expiryCard: {
     marginBottom: theme.spacing.md,
   },
-  expiryLabel: {
-    fontSize: theme.typography.sizes.caption,
-    color: theme.colors.light.textSoft,
-    marginBottom: theme.spacing.xs,
-  },
-  expiryDate: {
-    fontSize: theme.typography.sizes.body,
-    fontWeight: theme.typography.weights.bold,
-    color: theme.colors.light.text,
-  },
   expiryClass: {
-    fontSize: theme.typography.sizes.caption,
     color: theme.colors.light.textSoft,
+    fontSize: theme.typography.sizes.caption,
     marginTop: theme.spacing.xs,
   },
-  sellerCard: {
-    marginBottom: theme.spacing.md,
-  },
-  sellerLabel: {
-    fontSize: theme.typography.sizes.caption,
-    color: theme.colors.light.textSoft,
-    marginBottom: theme.spacing.xs,
-  },
-  sellerName: {
+  expiryDate: {
+    color: theme.colors.light.text,
     fontSize: theme.typography.sizes.body,
     fontWeight: theme.typography.weights.bold,
-    color: theme.colors.light.text,
+  },
+  expiryLabel: {
+    color: theme.colors.light.textSoft,
+    fontSize: theme.typography.sizes.caption,
     marginBottom: theme.spacing.xs,
   },
-  sellerPhone: {
+  header: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: theme.spacing.md,
+  },
+  imageContainer: {
+    backgroundColor: theme.colors.light.bgSunk,
+    height: 300,
+  },
+  imagePlaceholder: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
+  },
+  imagePlaceholderText: {
+    color: theme.colors.light.textSoft,
     fontSize: theme.typography.sizes.body,
-    color: theme.colors.brass,
+  },
+  nearExpiryBadge: {
+    backgroundColor: theme.colors.coral,
+    borderRadius: theme.borderRadius.chip,
+    marginLeft: theme.spacing.sm,
+    paddingHorizontal: theme.spacing.sm,
+    paddingVertical: theme.spacing.xs,
+  },
+  nearExpiryText: {
+    color: theme.colors.white,
+    fontSize: theme.typography.sizes.micro,
+    fontWeight: theme.typography.weights.extraBold,
+  },
+  originalPrice: {
+    color: theme.colors.light.textSoft,
+    fontSize: theme.typography.sizes.priceCard,
+    textDecorationLine: 'line-through',
+  },
+  priceContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginBottom: theme.spacing.xl,
   },
   safetyCard: {
     backgroundColor: theme.colors.light.bgSunk,
     marginBottom: theme.spacing.xl,
   },
   safetyText: {
-    fontSize: theme.typography.sizes.caption,
     color: theme.colors.light.textSoft,
+    fontSize: theme.typography.sizes.caption,
     fontStyle: 'italic',
   },
-  actions: {
-    gap: theme.spacing.md,
+  sellerCard: {
+    marginBottom: theme.spacing.md,
+  },
+  sellerLabel: {
+    color: theme.colors.light.textSoft,
+    fontSize: theme.typography.sizes.caption,
+    marginBottom: theme.spacing.xs,
+  },
+  sellerName: {
+    color: theme.colors.light.text,
+    fontSize: theme.typography.sizes.body,
+    fontWeight: theme.typography.weights.bold,
+    marginBottom: theme.spacing.xs,
+  },
+  sellerPhone: {
+    color: theme.colors.brass,
+    fontSize: theme.typography.sizes.body,
+  },
+  title: {
+    color: theme.colors.light.text,
+    flex: 1,
+    fontSize: theme.typography.sizes.screenHeadline,
+    fontWeight: theme.typography.weights.extraBold,
   },
 });
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, StyleSheet, Alert } from 'react-native';
+import { View, StyleSheet, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import { QRScanner } from '../../src/features/consumer';
 import { scanQr } from '../../src/api/endpoints';
@@ -35,5 +35,5 @@ export default function ScanScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: theme.colors.light.bg },
+  container: { backgroundColor: theme.colors.light.bg, flex: 1 },
 });

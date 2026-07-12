@@ -54,15 +54,15 @@ export default function LoginScreen() {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: theme.colors.light.bg,
     flexGrow: 1,
+    gap: 14,
     justifyContent: 'center',
     padding: 24,
-    gap: 14,
-    backgroundColor: theme.colors.light.bg,
   },
-  title: { fontSize: 26, fontWeight: '700', color: theme.colors.light.text, marginBottom: 8 },
   error: { color: theme.colors.urgent },
-  row: { flexDirection: 'row', justifyContent: 'center', marginTop: 12 },
-  muted: { color: theme.colors.light.textSoft },
   link: { color: theme.colors.light.primary, fontWeight: '600' },
+  muted: { color: theme.colors.light.textSoft },
+  row: { flexDirection: 'row', justifyContent: 'center', marginTop: 12 },
+  title: { color: theme.colors.light.text, fontSize: 26, fontWeight: '700', marginBottom: 8 },
 });

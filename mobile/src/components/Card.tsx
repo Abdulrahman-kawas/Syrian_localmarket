@@ -14,9 +14,9 @@ const Card: React.FC<CardProps> = ({ children, style }) => {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: theme.colors.light.bgElev,
+    borderColor: theme.colors.light.line,
     borderRadius: theme.borderRadius.card,
     borderWidth: 1,
-    borderColor: theme.colors.light.line,
     padding: theme.spacing.lg,
     ...theme.shadows.lightCard,
   },

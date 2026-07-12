@@ -36,5 +36,5 @@ export default function CreateListing() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: theme.colors.light.bg },
+  container: { backgroundColor: theme.colors.light.bg, flex: 1 },
 });

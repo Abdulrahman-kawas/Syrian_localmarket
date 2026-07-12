@@ -131,22 +131,22 @@ const ListingCreate: React.FC<ListingCreateProps> = ({ onSubmit }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: theme.colors.light.bg,
+    flex: 1,
     padding: theme.spacing.screenPadding,
   },
-  title: {
-    fontSize: theme.typography.sizes.screenHeadline,
-    fontWeight: theme.typography.weights.extraBold,
-    color: theme.colors.light.text,
-    marginBottom: theme.spacing.xl,
-  },
-  typeSelector: {
+  expiryClassSelector: {
     flexDirection: 'row',
     gap: theme.spacing.sm,
     marginBottom: theme.spacing.xl,
   },
-  expiryClassSelector: {
+  title: {
+    color: theme.colors.light.text,
+    fontSize: theme.typography.sizes.screenHeadline,
+    fontWeight: theme.typography.weights.extraBold,
+    marginBottom: theme.spacing.xl,
+  },
+  typeSelector: {
     flexDirection: 'row',
     gap: theme.spacing.sm,
     marginBottom: theme.spacing.xl,

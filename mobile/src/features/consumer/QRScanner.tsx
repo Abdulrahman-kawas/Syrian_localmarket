@@ -8,7 +8,7 @@ interface QRScannerProps {
   onCancel: () => void;
 }
 
-const QRScanner: React.FC<QRScannerProps> = ({ onScan, onCancel }) => {
+const QRScanner: React.FC<QRScannerProps> = ({ onScan: _onScan, onCancel }) => {
   return (
     <View style={styles.container}>
       <View style={styles.scannerContainer}>
@@ -20,7 +20,7 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScan, onCancel }) => {
 
       <View style={styles.infoContainer}>
         <Text style={styles.infoText}>
-          Scan the seller's QR code to purchase this product.
+          Scan the seller&apos;s QR code to purchase this product.
         </Text>
         <Text style={styles.noteText}>
           No in-app payment. Only the seller confirms — no confirmation, no proof.
@@ -35,47 +35,47 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScan, onCancel }) => {
 };
 
 const styles = StyleSheet.create({
+  actions: {
+    backgroundColor: theme.colors.overlay,
+    padding: theme.spacing.screenPadding,
+  },
   container: {
+    backgroundColor: theme.colors.black,
     flex: 1,
-    backgroundColor: '#000000',
-  },
-  scannerContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  scannerPlaceholder: {
-    width: 300,
-    height: 300,
-    borderWidth: 2,
-    borderColor: theme.colors.brass,
-    borderRadius: theme.borderRadius.qrCard,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  scannerPlaceholderText: {
-    fontSize: theme.typography.sizes.body,
-    color: '#FFFFFF',
   },
   infoContainer: {
+    backgroundColor: theme.colors.overlay,
     padding: theme.spacing.screenPadding,
-    backgroundColor: 'rgba(0,0,0,0.8)',
   },
   infoText: {
+    color: theme.colors.white,
     fontSize: theme.typography.sizes.body,
-    color: '#FFFFFF',
-    textAlign: 'center',
     marginBottom: theme.spacing.sm,
+    textAlign: 'center',
   },
   noteText: {
-    fontSize: theme.typography.sizes.caption,
     color: theme.colors.brass,
-    textAlign: 'center',
+    fontSize: theme.typography.sizes.caption,
     fontStyle: 'italic',
+    textAlign: 'center',
   },
-  actions: {
-    padding: theme.spacing.screenPadding,
-    backgroundColor: 'rgba(0,0,0,0.8)',
+  scannerContainer: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
+  },
+  scannerPlaceholder: {
+    alignItems: 'center',
+    borderColor: theme.colors.brass,
+    borderRadius: theme.borderRadius.qrCard,
+    borderWidth: 2,
+    height: 300,
+    justifyContent: 'center',
+    width: 300,
+  },
+  scannerPlaceholderText: {
+    color: theme.colors.white,
+    fontSize: theme.typography.sizes.body,
   },
 });
 

@@ -47,32 +47,32 @@ const Button: React.FC<ButtonProps> = ({
 
 const styles = StyleSheet.create({
   button: {
-    height: 50,
-    borderRadius: theme.borderRadius.button,
-    justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: theme.borderRadius.button,
+    height: 50,
+    justifyContent: 'center',
     paddingHorizontal: theme.spacing.xl,
-  },
-  primary: {
-    backgroundColor: theme.colors.pine,
-  },
-  ghost: {
-    backgroundColor: theme.colors.light.bgSunk,
-    borderWidth: 1,
-    borderColor: theme.colors.light.line,
   },
   disabled: {
     opacity: 0.5,
   },
-  text: {
-    fontSize: theme.typography.sizes.body,
-    fontWeight: theme.typography.weights.bold,
+  ghost: {
+    backgroundColor: theme.colors.light.bgSunk,
+    borderColor: theme.colors.light.line,
+    borderWidth: 1,
+  },
+  ghostText: {
+    color: theme.colors.light.text,
+  },
+  primary: {
+    backgroundColor: theme.colors.pine,
   },
   primaryText: {
     color: theme.colors.light.onPrimary,
   },
-  ghostText: {
-    color: theme.colors.light.text,
+  text: {
+    fontSize: theme.typography.sizes.body,
+    fontWeight: theme.typography.weights.bold,
   },
 });
 
