@@ -12,14 +12,12 @@ resource namespace 'Microsoft.NotificationHubs/namespaces@2023-09-01' = {
     name: 'Free'
     tier: 'Free'
   }
-  properties: {
-    enabled: true
-  }
 }
 
 resource hub 'Microsoft.NotificationHubs/namespaces/notificationHubs@2023-09-01' = {
   name: hubName
   parent: namespace
+  location: location
   properties: {}
 }
 

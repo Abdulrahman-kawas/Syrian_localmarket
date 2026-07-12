@@ -60,7 +60,7 @@ resource cdnEndpoint 'Microsoft.Cdn/profiles/endpoints@2024-02-01' = {
   parent: cdnProfile
   location: location
   properties: {
-    origin: [
+    origins: [
       {
         name: 'storageOrigin'
         properties: {
