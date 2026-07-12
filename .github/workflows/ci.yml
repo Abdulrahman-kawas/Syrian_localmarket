@@ -82,8 +82,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Credential-free validation: compile every Bicep file (building main.bicep
+      # also compiles the modules it references). The Azure CLI ships on the
+      # ubuntu-latest runner; `az bicep install` pins the Bicep toolchain.
+      - name: Set up Bicep CLI
+        run: az bicep install
+
       - name: Validate Bicep
-        uses: azure/bicep-deploy-action@v1
-        with:
-          bicep-version: "0.24.0"
-          files: "*.bicep"
+        shell: bash
+        run: |
+          shopt -s globstar
+          for f in **/*.bicep; do
+            echo "Validating $f"
+            az bicep build --file "$f" --stdout > /dev/null
+          done
