@@ -5,7 +5,7 @@ param managedIdentityPrincipalId string
 
 var keyVaultName = '${projectPrefix}-kv-${environment}'
 
-resource keyVault 'Microsoft.KeyVault/vaults@2023-07.0' = {
+resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' = {
   name: keyVaultName
   location: location
   properties: {
@@ -24,7 +24,7 @@ resource keyVault 'Microsoft.KeyVault/vaults@2023-07.0' = {
   }
 }
 
-resource accessPolicy 'Microsoft.KeyVault/vaults/accessPolicies@2023-07.0' = {
+resource accessPolicy 'Microsoft.KeyVault/vaults/accessPolicies@2023-07-01' = {
   name: 'add'
   parent: keyVault
   properties: {
