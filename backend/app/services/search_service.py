@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import uuid
 from decimal import Decimal
+from typing import Any
 
 from sqlalchemy import Select, and_, or_, select
 from sqlalchemy.orm import Session, joinedload
@@ -46,9 +47,9 @@ class ProductFilters:
         return self.lat is not None and self.lng is not None
 
 
-def build_query(filters: ProductFilters) -> Select:
+def build_query(filters: ProductFilters) -> Select[tuple[Product]]:
     """Compose a SELECT over active products honouring every provided filter."""
-    stmt: Select = (
+    stmt: Select[tuple[Product]] = (
         select(Product)
         .join(Seller, Product.seller_id == Seller.id)
         .options(joinedload(Product.seller).joinedload(Seller.user))
@@ -75,7 +76,7 @@ def build_query(filters: ProductFilters) -> Select:
                 >= filters.min_discount,
             )
         )
-    if filters.has_geo and filters.radius:
+    if filters.lat is not None and filters.lng is not None and filters.radius:
         stmt = stmt.where(
             within_radius_expr(Seller.geo_point, filters.lat, filters.lng, filters.radius)
         )
@@ -84,7 +85,7 @@ def build_query(filters: ProductFilters) -> Select:
     return stmt
 
 
-def _apply_sort(stmt: Select, filters: ProductFilters) -> Select:
+def _apply_sort(stmt: Select[tuple[Product]], filters: ProductFilters) -> Select[tuple[Product]]:
     sort = filters.sort
     if sort == "price_asc":
         return stmt.order_by(Product.discounted_price.asc())
@@ -92,7 +93,7 @@ def _apply_sort(stmt: Select, filters: ProductFilters) -> Select:
         return stmt.order_by(Product.discounted_price.desc())
     if sort == "expiry_asc":
         return stmt.order_by(Product.expiry_date.asc().nulls_last())
-    if sort == "nearby" and filters.has_geo:
+    if sort == "nearby" and filters.lat is not None and filters.lng is not None:
         return stmt.order_by(distance_meters_expr(Seller.geo_point, filters.lat, filters.lng).asc())
     return stmt.order_by(Product.created_at.desc())
 
@@ -118,7 +119,8 @@ def nearby_sellers(db: Session, lat: float, lng: float, radius_km: float) -> lis
     return list(db.scalars(stmt).unique().all())
 
 
-def count_star():  # noqa: ANN201 - tiny helper returning a SQL function element
+def count_star() -> Any:
+    """Tiny helper returning a SQL COUNT(*) function element."""
     from sqlalchemy import func
 
     return func.count()

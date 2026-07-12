@@ -36,6 +36,9 @@ dev = [
     "pytest-asyncio>=0.23.0",
     "pytest-cov>=4.1.0",
     "httpx>=0.26.0",
+    "types-bleach>=6.1.0",
+    "types-python-jose>=3.3.0",
+    "types-qrcode>=7.4",
 ]
 
 [tool.ruff]
@@ -71,7 +74,17 @@ disallow_untyped_defs = true
 
 [[tool.mypy.overrides]]
 module = ["tests.*"]
+# Test functions take pytest fixtures (client, db, ...) whose types add no
+# value to spell out; relax both the fully-untyped and partially-typed checks.
 disallow_untyped_defs = false
+disallow_incomplete_defs = false
+
+# The Azure Functions job logic (shared.*) lives in the sibling functions/
+# project and is added to sys.path at runtime by the tests; mypy can't resolve
+# it from the backend package.
+[[tool.mypy.overrides]]
+module = ["shared.*"]
+ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

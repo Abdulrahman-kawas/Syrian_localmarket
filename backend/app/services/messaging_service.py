@@ -45,7 +45,10 @@ def send_whatsapp(to: str, body: str) -> bool:
         from azure.communication.messages import NotificationMessagesClient
         from azure.communication.messages.models import TextNotificationContent
 
-        client = NotificationMessagesClient.from_connection_string(settings.acs_connection_string)
+        # from_connection_string exists at runtime; the SDK's type info omits it.
+        client = NotificationMessagesClient.from_connection_string(  # type: ignore[attr-defined]
+            settings.acs_connection_string
+        )
         client.send(
             TextNotificationContent(
                 channel_registration_id=settings.acs_whatsapp_channel_id,

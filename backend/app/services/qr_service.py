@@ -28,7 +28,9 @@ def _render_png_data_uri(code: str) -> str:
     """Render the QR as a base64 PNG data URI (works offline without blob storage)."""
     img = qrcode.make(code)
     buf = io.BytesIO()
-    img.save(buf, format="PNG")
+    # qrcode.make returns a Pillow-backed image at runtime whose save() accepts
+    # `format`; the stub models the pure-Python PNG image, which does not.
+    img.save(buf, format="PNG")  # type: ignore[call-arg]
     encoded = base64.b64encode(buf.getvalue()).decode("ascii")
     return f"data:image/png;base64,{encoded}"
 

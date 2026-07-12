@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import io
 import uuid
+from typing import Any
 
 from PIL import Image, ImageOps, UnidentifiedImageError
 
@@ -45,7 +46,7 @@ def process_upload(raw: bytes, declared_content_type: str) -> tuple[str, str]:
         raise bad_request("Unsupported image type")
 
     try:
-        img = Image.open(io.BytesIO(raw))
+        img: Image.Image = Image.open(io.BytesIO(raw))
         img.verify()  # verify magic bytes / integrity
         img = Image.open(io.BytesIO(raw))  # reopen: verify() leaves it unusable
     except (UnidentifiedImageError, OSError) as exc:
@@ -73,11 +74,11 @@ def process_upload(raw: bytes, declared_content_type: str) -> tuple[str, str]:
 
 def _encode(img: Image.Image, out_format: str, max_dim: int) -> bytes:
     work = img.copy()
-    work.thumbnail((max_dim, max_dim), Image.LANCZOS)
+    work.thumbnail((max_dim, max_dim), Image.Resampling.LANCZOS)
     if out_format == "JPEG" and work.mode == "RGBA":
         work = work.convert("RGB")
     buf = io.BytesIO()
-    save_kwargs = {"format": out_format}
+    save_kwargs: dict[str, Any] = {"format": out_format}
     if out_format in ("JPEG", "WEBP"):
         save_kwargs["quality"] = 85
     work.save(buf, **save_kwargs)  # no exif passed => metadata stripped
