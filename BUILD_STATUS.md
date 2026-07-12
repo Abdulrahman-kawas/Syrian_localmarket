@@ -129,8 +129,13 @@ Stop with `docker compose down` (add `-v` to also drop the DB volume).
 
 - [x] **Mobile typecheck — RESOLVED.** All 28 errors were the same `fontWeight: '600'` widening to `string`, sourced from `theme.typography.weights`. Fixed with `as const` on the weights object; also fixed a real `Input.tsx` bug (`error && styles.inputError` produced `""` when the error string was empty → changed to a ternary). **`npx tsc --noEmit` now passes clean (0 errors).**
 - [x] **Chat conversation-list — RESOLVED.** Added `chat_service.list_conversations` + `ConversationSummary` schema + **`GET /conversations`** (other participant, last-message preview, newest first). Exposed `seller.user_id` in product responses so a consumer can **start a chat from a listing**; wired `createConversation` + `listConversations` in the mobile client and both chat tabs, and "message seller" on the listing detail. Verified: 23 pytest tests pass, ruff clean, mobile `tsc` clean, and a **full two-user flow was exercised live through the Docker containers** (both parties see the conversation with the correct preview).
-1. **Proximity geo-targeting per consumer.** Consumer location isn't persisted (not in `DATA_MODEL`), so the proximity timer currently broadcasts new deals to registered devices. For true per-user targeting, persist a last-known location (device_registrations or users) and filter with the existing `deals_near`.
-2. **Production hardening (already stubbed, needs real wiring):** email/WhatsApp code delivery (currently logged in dev), Notification Hubs send, and certificate pinning in the mobile release build.
+- [x] **Proximity per-consumer targeting — RESOLVED.** Added `users.last_location` (PostGIS point + GiST index) via **idempotent migration 0002**, a **`PUT /users/me/location`** endpoint, and rewrote the timer to push only to consumers within `proximity_radius_km` of each new deal (`tokens_near`). Mobile pushes location from the consumer feed. Tests: targeting + endpoint; verified live (geometry persisted through Docker).
+- [x] **Production hardening — RESOLVED.**
+  - *Verification delivery:* `messaging_service` sends codes via **Azure Communication Services** email / WhatsApp when configured, else logs (dev). Wired into signup.
+  - *Push:* `notification_hub` implements the **Notification Hubs data-plane** (SAS token + REST direct send), platform-aware; no-op log when unconfigured. Unit-tested SAS/parse.
+  - *Cert pinning:* iOS `NSPinnedDomains` in `app.config.ts` + Android `network_security_config` pin-set via [`plugins/withAndroidCertPinning.js`](../mobile/plugins/withAndroidCertPinning.js); see [docs/CERT_PINNING.md](docs/CERT_PINNING.md). Replace the placeholder SPKI pins before release.
+
+**All scoped items are now closed.** Final verification: **27 backend tests pass** vs PostGIS, **ruff clean** (backend + functions), **mobile `tsc` clean**, and the **live Docker stack** was re-verified (migration 0002 applied, new routes serving, location update persisted).
 
 ---
 

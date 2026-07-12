@@ -11,10 +11,10 @@ from typing import Any
 
 from sqlalchemy.orm import Session
 
-from app.core.config import settings
 from app.core.logging import get_logger
 from app.models.device import DeviceRegistration
 from app.models.enums import DevicePlatform
+from app.services import notification_hub
 
 logger = get_logger("app.notifications")
 
@@ -46,21 +46,26 @@ def tokens_for_user(db: Session, user_id: uuid.UUID) -> list[str]:
 def send_to_user(
     db: Session, user_id: uuid.UUID, title: str, body: str, data: dict[str, Any] | None = None
 ) -> int:
-    """Send a push to all of a user's devices. Returns number of tokens targeted."""
-    tokens = tokens_for_user(db, user_id)
-    _dispatch(tokens, title, body, data or {})
-    return len(tokens)
+    """Send a push to all of a user's devices (platform-aware). Returns count."""
+    rows = db.query(DeviceRegistration).filter(DeviceRegistration.user_id == user_id).all()
+    payload = data or {}
+    for reg in rows:
+        _send_one(reg.token, reg.platform.value, title, body, payload)
+    return len(rows)
+
+
+def _send_one(token: str, platform: str, title: str, body: str, data: dict[str, Any]) -> None:
+    """Deliver one push, or log a no-op when Notification Hubs isn't configured."""
+    if not notification_hub.is_configured():
+        logger.info("push_noop", extra={"extra_fields": {"platform": platform, "title": title}})
+        return
+    notification_hub.send_direct(token, platform, title, body, data)
 
 
 def _dispatch(tokens: list[str], title: str, body: str, data: dict[str, Any]) -> None:
-    if not settings.azure_notification_hubs_connection_string:
-        logger.info(
-            "push_noop",
-            extra={"extra_fields": {"tokens": len(tokens), "title": title}},
-        )
+    """Broadcast helper (platform unknown → default fcm). Used by timer jobs."""
+    if not notification_hub.is_configured():
+        logger.info("push_noop", extra={"extra_fields": {"tokens": len(tokens), "title": title}})
         return
-    # Production: send via azure.messaging / Notification Hubs REST here.
-    logger.info(
-        "push_sent",
-        extra={"extra_fields": {"tokens": len(tokens), "title": title}},
-    )
+    for token in tokens:
+        notification_hub.send_direct(token, "fcm", title, body, data)

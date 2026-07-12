@@ -17,6 +17,20 @@ export default {
   ios: {
     supportsTablet: true,
     bundleIdentifier: 'com.localmarket.app',
+    // Certificate pinning (iOS 14+, release builds — not Expo Go). Replace the
+    // placeholder with the real SPKI SHA-256 pin (see docs/CERT_PINNING.md).
+    infoPlist: {
+      NSAppTransportSecurity: {
+        NSPinnedDomains: {
+          'api.localmarket.app': {
+            NSIncludesSubdomains: true,
+            NSPinnedCAIdentities: [
+              { 'SPKI-SHA256-BASE64': 'REPLACE_WITH_REAL_SPKI_PIN_BASE64=' },
+            ],
+          },
+        },
+      },
+    },
   },
   android: {
     adaptiveIcon: {
@@ -28,5 +42,15 @@ export default {
   web: {
     favicon: './assets/favicon.png',
   },
-  plugins: ['expo-router'],
+  plugins: [
+    'expo-router',
+    // Android certificate pinning via a network-security-config pin-set.
+    [
+      './plugins/withAndroidCertPinning',
+      {
+        host: 'api.localmarket.app',
+        pins: ['REPLACE_WITH_REAL_SPKI_PIN_BASE64='],
+      },
+    ],
+  ],
 };
