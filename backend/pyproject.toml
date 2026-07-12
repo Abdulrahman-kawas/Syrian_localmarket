@@ -21,6 +21,8 @@ dependencies = [
     "azure-storage-blob>=12.19.0",
     "azure-identity>=1.15.0",
     "azure-keyvault-secrets>=4.7.0",
+    "azure-communication-email>=1.0.0",
+    "azure-communication-messages>=1.0.0",
     "Pillow>=10.2.0",
     "qrcode[pil]>=7.4",
 ]

@@ -19,6 +19,7 @@ from app.core.security import create_access_token, hash_password, verify_passwor
 from app.models.enums import UserRole, VerificationMethod, VerificationStatus
 from app.models.user import User
 from app.schemas.auth import LoginRequest, SignupRequest, VerifyRequest
+from app.services import messaging_service
 
 logger = get_logger("app.auth")
 
@@ -58,17 +59,21 @@ def signup(db: Session, payload: SignupRequest, client_ip: str | None = None) ->
 
 
 def _deliver_code(user: User, code: str) -> None:
-    """Send the verification code via the chosen channel.
+    """Send the verification code via ACS email/WhatsApp (dev falls back to a log).
 
-    In development this is logged (server-side only). In production wire this to
-    Azure Communication Services (email) / a WhatsApp Business provider.
+    The code value is never logged.
     """
     channel = "email" if user.verification_method == VerificationMethod.email else "whatsapp"
     logger.info(
         "verification_code_issued",
         extra={"extra_fields": {"user_id": str(user.id), "channel": channel}},
     )
-    # NOTE: never log the code itself in production.
+    messaging_service.send_verification_code(
+        method=user.verification_method.value,
+        email=user.email,
+        phone=user.phone,
+        code=code,
+    )
 
 
 def verify(db: Session, payload: VerifyRequest) -> tuple[str, User]:

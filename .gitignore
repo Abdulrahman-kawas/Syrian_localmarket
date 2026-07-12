@@ -57,3 +57,10 @@ Thumbs.db
 
 # Local agent environment
 agent/
+
+# Local build / tooling artifacts
+.venv/
+.ruff_cache/
+.mypy_cache/
+backend/media_store/
+mobile/.expo/
